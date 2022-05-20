@@ -7,7 +7,6 @@ import {paginatedTodo, showNextPage} from "../../redux/actions/todoitems";
 const Pagination = () => {
 
 	const {todos, paginationButtons, pagination, activePage,} = useSelector(todosSelector);
-	console.log('pagii', pagination)
 	const dispatch = useDispatch();
 
 
@@ -17,7 +16,6 @@ const Pagination = () => {
 	}, [todos]);
 
 	const onPaginate = (index) => {
-		console.log('ahaahahah')
 		dispatch(paginatedTodo(index));
 	};
 

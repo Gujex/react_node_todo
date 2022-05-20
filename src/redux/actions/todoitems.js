@@ -1,6 +1,4 @@
-import axios from "axios";
-
-export const FETCH_DATA = "FETCH_DATA"
+export const FETCH_DATA = "FETCH_DATA";
 export const ADD_TODO = "ADD_TODO";
 export const REMOVE_TODO = "REMOVE_TODO";
 export const EDIT_TODO = "EDIT_TODO";
@@ -9,9 +7,15 @@ export const PAGINATED_TODO = "PAGINATED_TODO";
 export const PAGINETED_TO_NEXT_PAGE = "PAGINETED_TO_NEXT_PAGE";
 
 
-export const addTask = (todo, nextPage) => {
+export const fetchData = (todos) => {
 	return {
-		type: ADD_TODO, payload: {inputValue: todo, nextPage: nextPage}
+		type: FETCH_DATA, payload: todos
+	};
+};
+
+export const addTask = (todo, id, nextPage) => {
+	return {
+		type: ADD_TODO, payload: {task: todo, id: id, done: false, nextPage: nextPage}
 	};
 };
 
@@ -21,9 +25,9 @@ export const removeTodo = (id) => {
 	};
 };
 
-export const editTodo = (id, editInputValue) => {
+export const editTodo = (id, editInputValue, done) => {
 	return {
-		type: EDIT_TODO, payload: {id: id, inputValue: editInputValue}
+		type: EDIT_TODO, payload: {id: id, inputValue: editInputValue, done: done}
 	};
 };
 

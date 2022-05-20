@@ -10,7 +10,6 @@ export const todosSelector = createSelector(selectTodos, ({todos, pagination, ac
 	return {todos, pagination, activePage, paginationButtons};
 });
 
-
 export const slicerSelector = createSelector(selectTodos, ({todos, activePage, todosPerPage}) => {
 	let end = activePage * todosPerPage;
 	let start = end - todosPerPage;
