@@ -20,6 +20,8 @@ const App = () => {
 console.log('item', item)
 	const fetchingData = async () => {
 
+
+
 		axios.get(`http://localhost:2000/api/todos`)
 			.then(res => {
 				// await console.log(res.data)
