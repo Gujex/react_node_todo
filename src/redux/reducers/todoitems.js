@@ -5,18 +5,17 @@ import {
     TOGGLE_TODO,
     EDIT_TODO,
     PAGINATED_TODO,
-    PAGINETED_TO_NEXT_PAGE
+    PAGINETED_TO_NEXT_PAGE,
+    POPUP
 } from "../actions/todoitems";
-import axios from "axios";
-import {FetchApi} from "../../utils/fetchApi";
 
 const initialState = {
     todos: [],
     pagination: [],
     activePage: 1,
-    todosPerPage: 5
+    todosPerPage: 5,
+    popup: {msg: '', visible: false}
 };
-
 
 const todoitems = (state = initialState, action) => {
     switch (action.type) {
@@ -43,7 +42,7 @@ const todoitems = (state = initialState, action) => {
 
         case EDIT_TODO :
             const changedValue = state.todos.map(item => item._id === action.payload.id ? item.todos = {
-                task: action.payload.inputValue, id: Math.random()
+                task: action.payload.inputValue, _id: action.payload.id, done: action.payload.done
             } : item);
             return {
                 ...state, todos: changedValue
@@ -66,10 +65,14 @@ const todoitems = (state = initialState, action) => {
                 ...state,
                 pagination: [...action.payload],
             }
+        case POPUP :
+            return {
+                ...state,
+                popup: {msg: action.payload.msg, visible: action.payload.visible}
+            }
 
         default:
             return state
     }
 };
-
 export default todoitems;
